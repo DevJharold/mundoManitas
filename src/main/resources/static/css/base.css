@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #7158e2;
+    --primary-dark: #5b44cc;
+    --primary-soft: #f1efff;
+
+    --navy: #151729;
+    --navy-light: #282c45;
+
+    --white: #ffffff;
+    --background: #f6f7fb;
+
+    --text: #27293d;
+    --text-secondary: #565a6b;
+    --muted: #9295a5;
+    --muted-dark: #777b8d;
+
+    --border: #e7e8ee;
+    --border-light: #eeeeF2;
+
+    --success: #38a56d;
+    --success-soft: #ecfaf3;
+
+    --info: #4a90e2;
+    --info-soft: #edf6ff;
+
+    --warning: #dd9639;
+    --warning-soft: #fff5e8;
+
+    --danger: #c84040;
+    --danger-soft: #fff0f0;
+
+    --radius-sm: 8px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 18px;
+
+    --shadow-card: 0 15px 35px rgba(25, 28, 48, .07);
+
+    --sidebar-width: 250px;
+
+    --font-xs: 12px;
+    --font-sm: 13px;
+    --font-md: 15px;
+    --font-lg: 16px;
+    --font-xl: 20px;
+    --font-2xl: 30px;
+    --font-3xl: 40px;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: var(--font-md);
+    color: var(--text);
+    background: var(--background);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+svg {
+    display: block;
+}
+
+input,
+textarea {
+    outline: none;
+}

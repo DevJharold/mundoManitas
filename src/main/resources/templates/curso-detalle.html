@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title th:text="${modulo.titulo + ' | Mundo Manitas'}">
+        Módulo | Mundo Manitas
+    </title>
+
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/components.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/curso-detalle.css}">
+</head>
+
+<body class="app-body">
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-icon">M</div>
+
+                <div>
+                    <strong>Mundo Manitas</strong>
+                    <span>Plataforma educativa</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <span class="menu-title">PRINCIPAL</span>
+
+                <a th:href="@{/dashboard}" class="menu-item">
+                    <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 11.5 12 4l9 7.5"></path>
+                        <path d="M5 10v10h14V10"></path>
+                        <path d="M9 20v-6h6v6"></path>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+
+                <a th:href="@{/cursos}" class="menu-item active">
+                    <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5Z"></path>
+                        <path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z"></path>
+                    </svg>
+                    <span>Módulos</span>
+                </a>
+
+                <a th:href="@{/perfil}" class="menu-item">
+                    <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21a8 8 0 0 1 16 0"></path>
+                    </svg>
+                    <span>Mi perfil</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <form th:action="@{/logout}" method="post">
+                    <button class="logout-button" type="submit">
+                        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M10 17l5-5-5-5"></path>
+                            <path d="M15 12H3"></path>
+                            <path d="M14 3h4a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-4"></path>
+                        </svg>
+                        <span>Cerrar sesión</span>
+                    </button>
+                </form>
+
+            </div>
+
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <p class="page-location">
+                        Módulos /
+                        <span th:text="${modulo.titulo}">Módulo</span>
+                    </p>
+
+                    <h2>Detalle del módulo</h2>
+                </div>
+
+                <div class="topbar-user">
+
+                    <div class="user-avatar" th:text="${#strings.substring(nombre, 0, 1)}">A</div>
+
+                    <div class="user-info">
+                        <strong th:text="${nombre}">Alumno Mundo Manitas</strong>
+                        <span th:text="${tipo}">estudiante</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <section class="course-detail-hero">
+
+                <div class="course-detail-copy">
+
+                    <span class="section-label" th:text="${#strings.toUpperCase(modulo.nivel)}">
+                        BÁSICO
+                    </span>
+
+                    <h1 th:text="${modulo.titulo}">
+                        Nombre del módulo
+                    </h1>
+
+                    <p th:text="${modulo.descripcion}">
+                        Descripción del módulo.
+                    </p>
+
+                    <div class="course-detail-meta">
+
+                        <span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5Z"></path>
+                                <path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z"></path>
+                            </svg>
+                            <span th:text="|${totalContenidos} contenidos|">0 contenidos</span>
+                        </span>
+
+                        <span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M12 7v5l3 2"></path>
+                            </svg>
+                            <span th:text="|${totalMinutos} min|">0 min</span>
+                        </span>
+
+                        <span>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path
+                                    d="M12 3 14.8 8.7 21 9.6l-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z">
+                                </path>
+                            </svg>
+                            <span th:text="${modulo.nivel}">básico</span>
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <div class="detail-progress-card" th:if="${esEstudiante}">
+
+                    <span>Tu progreso</span>
+
+                    <strong th:text="|${porcentaje}%|">0%</strong>
+
+                    <div class="progress-bar">
+                        <span th:style="|width: ${porcentaje}%;|"></span>
+                    </div>
+
+                    <small th:text="${estado}">
+                        POR INICIAR
+                    </small>
+
+                </div>
+
+            </section>
+
+            <section class="course-content-layout">
+
+                <section class="modules-container card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <span>CONTENIDO</span>
+                            <h3>Contenido del módulo</h3>
+                        </div>
+
+                    </div>
+
+                    <article class="module-card">
+
+                        <div class="module-header">
+
+                            <div class="module-number" th:text="${#numbers.formatInteger(modulo.orden, 2)}">
+                                01
+                            </div>
+
+                            <div>
+                                <span th:text="|MÓDULO ${modulo.orden}|">MÓDULO 1</span>
+                                <h3 th:text="${modulo.titulo}">Módulo</h3>
+                            </div>
+
+                            <strong class="module-state" th:classappend="${estadoClase}" th:text="${estado}"
+                                th:if="${esEstudiante}">
+                                EN PROGRESO
+                            </strong>
+
+                        </div>
+
+                        <div class="content-section" th:if="${!#lists.isEmpty(videos)}">
+
+                            <div class="content-section-title">
+                                <span>VIDEOS</span>
+                                <strong th:text="${totalVideos}">0</strong>
+                            </div>
+
+                            <div class="lesson" th:each="video : ${videos}">
+
+                                <span class="lesson-status video-status">
+                                    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                        <path d="m9 7 8 5-8 5V7Z"></path>
+                                    </svg>
+                                </span>
+
+                                <div>
+                                    <strong th:text="${video.titulo}">
+                                        Video
+                                    </strong>
+
+                                    <small th:text="|${video.duracionMinutos} min|"
+                                        th:if="${video.duracionMinutos > 0}">
+                                        10 min
+                                    </small>
+                                </div>
+
+                                <a class="content-action" th:href="${video.url}" target="_blank" rel="noopener"
+                                    th:if="${video.url != null and video.url != ''}">
+                                    Ver video
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="content-section" th:if="${!#lists.isEmpty(ejercicios)}">
+
+                            <div class="content-section-title">
+                                <span>EJERCICIOS</span>
+                                <strong th:text="${totalEjercicios}">0</strong>
+                            </div>
+
+                            <div class="lesson" th:each="ejercicio : ${ejercicios}">
+
+                                <span class="lesson-status exercise-status">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        <path d="M5 4h14v16H5z"></path>
+                                        <path d="M8 8h8"></path>
+                                        <path d="M8 12h5"></path>
+                                    </svg>
+                                </span>
+
+                                <div>
+                                    <strong th:text="${ejercicio.titulo}">
+                                        Ejercicio
+                                    </strong>
+
+                                    <small class="exercise-type" th:text="${ejercicio.tipo}">
+                                        cuestionario
+                                    </small>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="module-empty" th:if="${#lists.isEmpty(videos) and #lists.isEmpty(ejercicios)}">
+                            <strong>Este módulo aún no tiene contenido registrado.</strong>
+                            <span>Los videos y ejercicios aparecerán aquí cuando sean agregados.</span>
+                        </div>
+
+                    </article>
+
+                </section>
+
+                <aside class="course-side-card card">
+
+                    <div th:if="${siguienteVideo != null}">
+
+                        <span class="section-label">CONTENIDO</span>
+
+                        <h3 th:text="${siguienteVideo.titulo}">
+                            Siguiente video
+                        </h3>
+
+                        <p>
+                            Revisa el contenido audiovisual disponible para este módulo.
+                        </p>
+
+                        <div class="lesson-preview">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="m9 7 8 5-8 5V7Z"></path>
+                            </svg>
+                        </div>
+
+                        <a th:href="${siguienteVideo.url}" target="_blank" rel="noopener"
+                            class="btn btn-primary btn-full"
+                            th:if="${siguienteVideo.url != null and siguienteVideo.url != ''}">
+                            <span>Abrir video</span>
+                            <svg class="button-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M5 12h14"></path>
+                                <path d="m13 6 6 6-6 6"></path>
+                            </svg>
+                        </a>
+
+                    </div>
+
+                    <div class="side-empty" th:if="${siguienteVideo == null}">
+                        <span class="section-label">CONTENIDO</span>
+                        <h3>Módulo registrado</h3>
+                        <p>No hay videos disponibles en este módulo.</p>
+                    </div>
+
+                    <div class="module-summary-side">
+
+                        <span>Nivel</span>
+                        <strong th:text="${modulo.nivel}">básico</strong>
+
+                        <span>Videos</span>
+                        <strong th:text="${totalVideos}">0</strong>
+
+                        <span>Ejercicios</span>
+                        <strong th:text="${totalEjercicios}">0</strong>
+
+                    </div>
+
+                </aside>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,119 @@
+.profile-layout {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 290px minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.profile-card {
+    padding: 35px 25px;
+    text-align: center;
+}
+
+.profile-avatar-large {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 22px;
+    background: linear-gradient(135deg, var(--primary), #9a84f5);
+    color: var(--white);
+    font-size: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.profile-card h2 {
+    margin-top: 20px;
+    font-size: 20px;
+    line-height: 1.3;
+}
+
+.profile-card > p {
+    margin-top: 6px;
+    color: var(--muted-dark);
+    font-size: 13px;
+    word-break: break-word;
+}
+
+.profile-role {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    margin-top: 15px;
+    padding: 0 13px;
+    border-radius: 20px;
+    background: var(--primary-soft);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.profile-stats {
+    margin-top: 28px;
+    padding-top: 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--border-light);
+}
+
+.profile-stats div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-stats strong {
+    font-size: 18px;
+}
+
+.profile-stats span {
+    margin-top: 5px;
+    color: var(--muted-dark);
+    font-size: 11px;
+}
+
+.profile-form-card {
+    padding: 28px;
+}
+
+.profile-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.profile-field.full {
+    grid-column: 1 / -1;
+}
+
+.profile-form-card .form-control[readonly] {
+    background: #fbfbfd;
+    color: var(--text);
+    cursor: default;
+}
+
+.profile-capitalize {
+    text-transform: capitalize;
+}
+
+@media (max-width: 900px) {
+    .profile-layout {
+        grid-template-columns: 260px minmax(0, 1fr);
+    }
+}
+
+@media (max-width: 750px) {
+    .profile-layout,
+    .profile-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-field.full {
+        grid-column: auto;
+    }
+}

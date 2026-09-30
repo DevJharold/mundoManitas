@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi perfil | Mundo Manitas</title>
+
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/components.css}">
+    <link rel="stylesheet" th:href="@{/css/layout.css}">
+    <link rel="stylesheet" th:href="@{/css/perfil.css}">
+</head>
+
+<body class="app-body">
+
+    <div class="app-layout">
+
+        <aside class="sidebar">
+
+            <div class="sidebar-brand">
+                <div class="brand-icon">M</div>
+
+                <div>
+                    <strong>Mundo Manitas</strong>
+                    <span>Plataforma educativa</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-menu">
+
+                <span class="menu-title">PRINCIPAL</span>
+
+                <a th:href="@{/dashboard}" class="menu-item">
+                    <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M3 11.5 12 4l9 7.5"></path>
+                        <path d="M5 10v10h14V10"></path>
+                        <path d="M9 20v-6h6v6"></path>
+                    </svg>
+                    <span>Dashboard</span>
+                </a>
+
+                <a th:href="@{/cursos}" class="menu-item">
+                    <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H11v17H6.5A2.5 2.5 0 0 0 4 22V5.5Z"></path>
+                        <path d="M20 5.5A2.5 2.5 0 0 0 17.5 3H13v17h4.5A2.5 2.5 0 0 1 20 22V5.5Z"></path>
+                    </svg>
+                    <span>Módulos</span>
+                </a>
+
+                <a th:href="@{/perfil}" class="menu-item active">
+                    <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 21a8 8 0 0 1 16 0"></path>
+                    </svg>
+                    <span>Mi perfil</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <form th:action="@{/logout}" method="post">
+                    <button class="logout-button" type="submit">
+                        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"
+                            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M10 17l5-5-5-5"></path>
+                            <path d="M15 12H3"></path>
+                            <path d="M14 3h4a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3h-4"></path>
+                        </svg>
+                        <span>Cerrar sesión</span>
+                    </button>
+                </form>
+
+            </div>
+
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+
+                <div>
+                    <p class="page-location">Mi cuenta</p>
+                    <h2>Perfil</h2>
+                </div>
+
+                <div class="topbar-user">
+
+                    <div class="user-avatar" th:text="${#strings.substring(nombre, 0, 1)}">A</div>
+
+                    <div class="user-info">
+                        <strong th:text="${nombre}">Alumno Mundo Manitas</strong>
+                        <span th:text="${tipo}">estudiante</span>
+                    </div>
+
+                </div>
+
+            </header>
+
+            <section class="profile-layout">
+
+                <aside class="profile-card card">
+
+                    <div class="profile-avatar-large" th:text="${#strings.substring(nombre, 0, 1)}">A</div>
+
+                    <h2 th:text="${nombre}">
+                        Alumno Mundo Manitas
+                    </h2>
+
+                    <p th:text="${correo}">
+                        alumno@mundomanitas.com
+                    </p>
+
+                    <span class="profile-role" th:text="${tipo}">
+                        estudiante
+                    </span>
+
+                    <div class="profile-stats" th:if="${esEstudiante}">
+
+                        <div>
+                            <strong th:text="${totalModulos}">0</strong>
+                            <span>Módulos</span>
+                        </div>
+
+                        <div>
+                            <strong th:text="${completados}">0</strong>
+                            <span>Completados</span>
+                        </div>
+
+                        <div>
+                            <strong th:text="|${progresoGeneral}%|">0%</strong>
+                            <span>Progreso</span>
+                        </div>
+
+                    </div>
+
+                </aside>
+
+                <section class="profile-form-card card">
+
+                    <div class="card-heading">
+
+                        <div>
+                            <span>INFORMACIÓN PERSONAL</span>
+                            <h3>Datos de mi perfil</h3>
+                        </div>
+
+                    </div>
+
+                    <div class="profile-form-grid">
+
+                        <div class="form-field profile-field full">
+                            <label for="nombre">Nombre completo</label>
+                            <input class="form-control" type="text" id="nombre" th:value="${nombre}" readonly>
+                        </div>
+
+                        <div class="form-field profile-field full">
+                            <label for="correo">Correo electrónico</label>
+                            <input class="form-control" type="email" id="correo" th:value="${correo}" readonly>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="tipo">Tipo de usuario</label>
+                            <input class="form-control profile-capitalize" type="text" id="tipo" th:value="${tipo}"
+                                readonly>
+                        </div>
+
+                        <div class="form-field" th:if="${esEstudiante and estudiante != null}">
+                            <label for="grado">Grado</label>
+                            <input class="form-control" type="text" id="grado" th:value="${estudiante.grado}" readonly>
+                        </div>
+
+                        <div class="form-field" th:if="${esEstudiante and estudiante != null}">
+                            <label for="edad">Edad</label>
+                            <input class="form-control" type="text" id="edad" th:value="${estudiante.edad}" readonly>
+                        </div>
+
+                        <div class="form-field" th:if="${esEstudiante and estudiante != null}">
+                            <label for="nivel">Nivel de estudio</label>
+                            <input class="form-control" type="text" id="nivel" th:value="${estudiante.nivelEstudio}"
+                                readonly>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
